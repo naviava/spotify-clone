@@ -28,12 +28,12 @@ export default function UploadModal() {
     defaultValues: { author: "", title: "", song: null, image: null },
   });
 
-  const onChange = (open: boolean) => {
+  function onChange(open: boolean) {
     if (!open) {
       reset();
       uploadModal.onClose();
     }
-  };
+  }
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {

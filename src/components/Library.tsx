@@ -9,20 +9,28 @@ import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 import useUploadModal from "@/hooks/useUploadModal";
 
-interface LibraryProps {}
+// Types.
+import { Song } from "@/types/types";
 
-export default function Library({}: LibraryProps) {
+// Components.
+import MediaItem from "./MediaItem";
+
+interface LibraryProps {
+  songs: Song[];
+}
+
+export default function Library({ songs }: LibraryProps) {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
   const { user } = useUser();
 
-  const onClick = () => {
+  function onClick() {
     if (!user) return authModal.onOpen();
 
     // TODO: Check for subcription.
 
     return uploadModal.onOpen();
-  };
+  }
 
   return (
     <div className="flex flex-col">
@@ -37,7 +45,11 @@ export default function Library({}: LibraryProps) {
           className="cursor-pointer text-neutral-400 transition hover:text-white"
         />
       </div>
-      <div className="mt-4 flex flex-col gap-y-2 px-3">List of Songs!</div>
+      <div className="mt-4 flex flex-col gap-y-2 px-3">
+        {songs.map((item) => (
+          <MediaItem key={item.id} onClick={() => {}} data={item} />
+        ))}
+      </div>
     </div>
   );
 }

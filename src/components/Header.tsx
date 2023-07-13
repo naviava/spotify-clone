@@ -31,14 +31,14 @@ export default function Header({ children, className }: HeaderProps) {
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
 
-  const handleLogout = async () => {
+  async function handleLogout() {
     const { error } = await supabaseClient.auth.signOut();
     // TODO: Reset any songs playing.
     router.refresh();
 
     if (error) toast.error(error.message);
     else toast.success("Logged out");
-  };
+  }
 
   return (
     <div

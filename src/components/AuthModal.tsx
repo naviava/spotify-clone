@@ -33,9 +33,9 @@ export default function AuthModal({}: AuthModalProps) {
     }
   }, [session, router, onClose]);
 
-  const onChange = (open: boolean) => {
+  function onChange(open: boolean) {
     if (!open) onClose();
-  };
+  }
 
   return (
     <Modal
