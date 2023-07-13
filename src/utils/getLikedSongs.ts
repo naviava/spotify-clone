@@ -7,26 +7,24 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 // Types.
 import { Song } from "@/types";
 
-// Lib and utils.
-import getSongs from "./getSongs";
-
-export default async function getSongsByTitle(title: string): Promise<Song[]> {
+export default async function getLikedSongs(): Promise<Song[]> {
   const supabase = createServerComponentClient({ cookies: cookies });
-
-  if (!title) {
-    const allSongs = await getSongs();
-    return allSongs;
-  }
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   const { data, error } = await supabase
-    .from("songs")
-    .select("*")
-    .ilike("title", `%${title}%`)
+    .from("liked_songs")
+    .select("*, songs(*)")
+    .eq("user_id", session?.user?.id)
     .order("created_at", { ascending: false });
 
   if (error) {
     console.log(error);
+    return [];
   }
 
-  return (data as any) || [];
+  if (!data) return [];
+
+  return data.map((item) => ({ ...item.songs }));
 }

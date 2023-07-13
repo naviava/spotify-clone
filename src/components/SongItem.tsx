@@ -4,7 +4,7 @@
 import useLoadImage from "@/hooks/useLoadImage";
 
 // Types.
-import { Song } from "@/types/types";
+import { Song } from "@/types";
 import Image from "next/image";
 
 // Components.

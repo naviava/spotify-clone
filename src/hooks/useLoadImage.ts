@@ -2,7 +2,7 @@
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 // Types.
-import { Song } from "@/types/types";
+import { Song } from "@/types";
 
 export default function useLoadImage(song: Song) {
   const supabaseClient = useSupabaseClient();

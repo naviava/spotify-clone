@@ -10,6 +10,8 @@ interface SearchPageProps {
   searchParams: { title: string };
 }
 
+export const revalidate = 0;
+
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const songs = await getSongsByTitle(searchParams.title);
 

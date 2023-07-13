@@ -9,7 +9,7 @@ import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 
 // Types.
-import { Song } from "@/types/types";
+import { Song } from "@/types";
 
 // Components.
 import Box from "./Box";

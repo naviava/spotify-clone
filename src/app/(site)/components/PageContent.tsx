@@ -1,7 +1,7 @@
 "use client";
 
 // Types.
-import { Song } from "@/types/types";
+import { Song } from "@/types";
 
 // Components.
 import SongItem from "@/components/SongItem";

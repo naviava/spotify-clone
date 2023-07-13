@@ -10,7 +10,7 @@ import { useUser } from "@/hooks/useUser";
 import useUploadModal from "@/hooks/useUploadModal";
 
 // Types.
-import { Song } from "@/types/types";
+import { Song } from "@/types";
 
 // Components.
 import MediaItem from "./MediaItem";

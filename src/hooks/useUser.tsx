@@ -8,7 +8,7 @@ import {
 } from "@supabase/auth-helpers-react";
 
 // Types.
-import { Subscription, UserDetails } from "@/types/types";
+import { Subscription, UserDetails } from "@/types";
 import { User } from "@supabase/auth-helpers-nextjs";
 
 type UserContextType = {
