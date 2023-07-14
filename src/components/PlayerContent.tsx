@@ -54,7 +54,7 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
   }
 
   const [play, { pause, sound }] = useSound(songUrl, {
-    volume: volume,
+    volume,
     onplay: () => setIsPlaying(true),
     onend: () => {
       setIsPlaying(false);
