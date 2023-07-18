@@ -13,9 +13,7 @@ import useDebounce from "@/hooks/useDebounce";
 // Components.
 import Input from "./Input";
 
-interface SearchInputProps {}
-
-export default function SearchInput({}: SearchInputProps) {
+export default function SearchInput() {
   const router = useRouter();
   const [value, setValue] = useState("");
   const debouncedValue = useDebounce(value, 500);

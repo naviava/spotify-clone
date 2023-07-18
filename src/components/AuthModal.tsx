@@ -1,6 +1,7 @@
 "use client";
 
 // React and Next.
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 // External packages.
@@ -16,11 +17,8 @@ import useAuthModal from "@/hooks/useAuthModal";
 
 // Components.
 import Modal from "./Modal";
-import { useEffect } from "react";
 
-interface AuthModalProps {}
-
-export default function AuthModal({}: AuthModalProps) {
+export default function AuthModal() {
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
   const { session } = useSessionContext();

@@ -1,11 +1,12 @@
 // React and Next.
 import Image from "next/image";
 
+// Custom hooks.
+import usePlayer from "@/hooks/usePlayer";
+import useLoadImage from "@/hooks/useLoadImage";
+
 // Types.
 import { Song } from "@/types";
-
-// Lib and utils.
-import useLoadImage from "@/hooks/useLoadImage";
 
 interface MediaItemProps {
   data: Song;
@@ -14,11 +15,12 @@ interface MediaItemProps {
 
 export default function MediaItem({ data, onClick }: MediaItemProps) {
   const imageUrl = useLoadImage(data);
+  const player = usePlayer();
 
   function handleClick() {
     if (onClick) return onClick(data.id);
 
-    // TODO: Default turn on player
+    player.setId(data.id);
   }
 
   return (

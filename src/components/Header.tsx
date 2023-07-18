@@ -13,8 +13,9 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { toast } from "react-hot-toast";
 
 // Custom hooks.
-import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
+import usePlayer from "@/hooks/usePlayer";
+import useAuthModal from "@/hooks/useAuthModal";
 
 // Components.
 import Button from "./Button";
@@ -27,13 +28,13 @@ interface HeaderProps {
 export default function Header({ children, className }: HeaderProps) {
   const router = useRouter();
   const authModal = useAuthModal();
-
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
+  const player = usePlayer();
 
   async function handleLogout() {
     const { error } = await supabaseClient.auth.signOut();
-    // TODO: Reset any songs playing.
+    player.reset();
     router.refresh();
 
     if (error) toast.error(error.message);

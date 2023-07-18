@@ -8,9 +8,7 @@ import useGetSongById from "@/hooks/useGetSongById";
 // Components.
 import PlayerContent from "./PlayerContent";
 
-interface PlayerProps {}
-
-export default function Player({}: PlayerProps) {
+export default function Player() {
   const player = usePlayer();
   const { song } = useGetSongById(player.activeId);
 
