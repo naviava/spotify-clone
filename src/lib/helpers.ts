@@ -1,3 +1,4 @@
+// Types.
 import { Price } from "@/types";
 
 export const getURL = () => {
@@ -12,13 +13,13 @@ export const getURL = () => {
   return url;
 };
 
-export const postData = async ({
+export async function postData({
   url,
   data,
 }: {
   url: string;
   data?: { price: Price };
-}) => {
+}) {
   console.log("posting,", url, data);
 
   const res: Response = await fetch(url, {
@@ -35,10 +36,10 @@ export const postData = async ({
   }
 
   return res.json();
-};
+}
 
-export const toDateTime = (secs: number) => {
+export function toDateTime(secs: number) {
   var t = new Date("1970-01-01T00:30:00Z"); // Unix epoch start.
   t.setSeconds(secs);
   return t;
-};
+}

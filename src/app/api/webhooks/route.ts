@@ -1,7 +1,11 @@
-import Stripe from "stripe";
-import { NextResponse } from "next/server";
+// Next.
 import { headers } from "next/headers";
+import { NextResponse } from "next/server";
 
+// External packages.
+import Stripe from "stripe";
+
+// Lib and utils.
 import { stripe } from "@/lib/stripe";
 import {
   upsertProductRecord,
@@ -43,10 +47,12 @@ export async function POST(request: Request) {
         case "product.updated":
           await upsertProductRecord(event.data.object as Stripe.Product);
           break;
+
         case "price.created":
         case "price.updated":
           await upsertPriceRecord(event.data.object as Stripe.Price);
           break;
+
         case "customer.subscription.created":
         case "customer.subscription.updated":
         case "customer.subscription.deleted":
@@ -57,6 +63,7 @@ export async function POST(request: Request) {
             event.type === "customer.subscription.created"
           );
           break;
+
         case "checkout.session.completed":
           const checkoutSession = event.data.object as Stripe.Checkout.Session;
           if (checkoutSession.mode === "subscription") {
@@ -68,6 +75,7 @@ export async function POST(request: Request) {
             );
           }
           break;
+
         default:
           throw new Error("Unhandled relevant event!");
       }
